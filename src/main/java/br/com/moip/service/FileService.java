@@ -3,10 +3,10 @@ package br.com.moip.service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.AbstractMap;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import br.com.moip.model.FileResult;
 
 /**
  * Created by Lacau on 13/06/2017.
@@ -26,18 +26,21 @@ public class FileService {
         return Holder.INSTANCE;
     }
 
-    public List<AbstractMap.SimpleEntry<String, String>> parseFile(final String path) {
+    public FileResult parseFile(final String path) {
+        FileResult fileResult = new FileResult();
         try {
             final Matcher matcher = LOG_PATTERN.matcher(readFile(path));
             while(matcher.find()) {
-                System.out.println(matcher.group(1));
-                System.out.println(matcher.group(2));
+                final String g1 = matcher.group(1);
+                final String g2 = matcher.group(2);
+                fileResult.addRequestURL(g1.substring(g1.indexOf("\"") + 1, g1.length() - 1));
+                fileResult.addResponseStatus(g2.substring(g2.indexOf("\"") + 1, g2.length() - 1));
             }
         } catch(IOException e) {
             e.printStackTrace();
         }
 
-        return null;
+        return fileResult;
     }
 
     private String readFile(final String path) throws IOException {
