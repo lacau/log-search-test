@@ -13,7 +13,7 @@ import br.com.moip.service.PrinterService;
  */
 public class Main {
 
-    private static int MAX_RESULTS = 3;
+    private static final int MAX_RESULTS = 3;
 
     public static void main(String[] args) {
         //long init = System.currentTimeMillis();
