@@ -15,15 +15,17 @@ import br.com.moip.model.FileResult;
  */
 public class MathService {
 
-    private static final class Holder {
-        static final MathService INSTANCE = new MathService();
+    private static final MathService INSTANCE;
+
+    static {
+        INSTANCE = new MathService();
     }
 
     private MathService() {
     }
 
     public static MathService getInstance() {
-        return Holder.INSTANCE;
+        return INSTANCE;
     }
 
     public List<Map.Entry<String, Integer>> calculateMostCalledURLs(FileResult fileResult, int maxSize) {

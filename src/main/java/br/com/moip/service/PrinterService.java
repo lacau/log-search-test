@@ -8,15 +8,17 @@ import java.util.Map;
  */
 public class PrinterService {
 
-    private static final class Holder {
-        static final PrinterService INSTANCE = new PrinterService();
+    private static final PrinterService INSTANCE;
+
+    static {
+        INSTANCE = new PrinterService();
     }
 
     private PrinterService() {
     }
 
     public static PrinterService getInstance() {
-        return Holder.INSTANCE;
+        return INSTANCE;
     }
 
     public void printHelp() {

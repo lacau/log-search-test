@@ -19,15 +19,17 @@ public class FileService {
 
     private static final short REGEX_RESPONSE_GROUP = 2;
 
-    private static final class Holder {
-        static final FileService INSTANCE = new FileService();
+    private static final FileService INSTANCE;
+
+    static {
+        INSTANCE = new FileService();
     }
 
     private FileService() {
     }
 
     public static FileService getInstance() {
-        return Holder.INSTANCE;
+        return INSTANCE;
     }
 
     public FileResult parseFile(final String path) {
