@@ -13,8 +13,8 @@ public class FileResult {
     private List<String> responseStatus;
 
     public FileResult() {
-        requestURL = new ArrayList<String>();
-        responseStatus = new ArrayList<String>();
+        requestURL = new ArrayList<>();
+        responseStatus = new ArrayList<>();
     }
 
     public void addRequestURL(String url) {

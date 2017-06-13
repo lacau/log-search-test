@@ -28,7 +28,7 @@ public class MathService {
     public List<Map.Entry<String, Integer>> calculateMostCalledURLs(FileResult fileResult, int maxSize) {
         final Map<String, Integer> urlCount = countEquals(fileResult.getRequestURL());
 
-        final List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<Map.Entry<String, Integer>>(urlCount.entrySet());
+        final List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<>(urlCount.entrySet());
 
         Collections.sort(sortedEntries, byValueDesc());
 
@@ -38,7 +38,7 @@ public class MathService {
     public List<Map.Entry<String, Integer>> calculateResponseStatusCount(FileResult fileResult) {
         final Map<String, Integer> statusCount = countEquals(fileResult.getResponseStatus());
 
-        final List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<Map.Entry<String, Integer>>(statusCount.entrySet());
+        final List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<>(statusCount.entrySet());
 
         Collections.sort(sortedEntries, byKeyAsc());
 
@@ -46,7 +46,7 @@ public class MathService {
     }
 
     private Map<String, Integer> countEquals(List<String> list) {
-        final Map<String, Integer> map = new HashMap<String, Integer>();
+        final Map<String, Integer> map = new HashMap<>();
 
         for(String url : list) {
             if(map.get(url) == null) {
