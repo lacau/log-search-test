@@ -1,5 +1,6 @@
 package br.com.moip;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -15,7 +16,7 @@ public class Main {
 
     private static final int MAX_RESULTS = 3;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         //long init = System.currentTimeMillis();
         if(args.length == 0) {
             PrinterService.getInstance().printHelp();

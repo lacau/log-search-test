@@ -3,6 +3,7 @@ package br.com.moip.service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -32,7 +33,9 @@ public class FileService {
         return INSTANCE;
     }
 
-    public FileResult parseFile(final String path) {
+    public FileResult parseFile(final String path) throws IOException {
+        Optional.ofNullable(path).orElseThrow(() -> new IllegalArgumentException("path can not be null. path=" + path));
+
         FileResult fileResult = new FileResult();
         try {
             final Matcher matcher = LOG_PATTERN.matcher(readFile(path));
@@ -44,6 +47,7 @@ public class FileService {
             }
         } catch(IOException e) {
             e.printStackTrace();
+            throw e;
         }
 
         return fileResult;
