@@ -33,21 +33,22 @@ URL COUNT: 960000
 STATUS COUNT: 960000  
 START: 1497335151259  
 END: 1497335158916  
-ELAPSED: 7657
+ELAPSED: 7657  
 
-When runned against a **900Mb** logfile, it took about **14 seconds** to came up with results below:
-https://eagerhaystack.com - 143998
-https://surrealostrich.com.br - 140928
-https://grimpottery.net.br - 140542
-200 - 272061
-201 - 269174
-204 - 266491
-400 - 276475
-404 - 283005
-500 - 274175
-503 - 278584
-URL COUNT: 1919965
-STATUS COUNT: 1919965
-START: 1497348363156
-END: 1497348377332
-ELAPSED: 14176
+When runned against a **900Mb** logfile, it took about **14 seconds** to came up with results below:  
+https://eagerhaystack.com - 143998  
+https://surrealostrich.com.br - 140928  
+https://grimpottery.net.br - 140542  
+200 - 272061  
+201 - 269174  
+204 - 266491  
+400 - 276475  
+404 - 283005  
+500 - 274175  
+503 - 278584  
+
+URL COUNT: 1919965  
+STATUS COUNT: 1919965  
+START: 1497348363156  
+END: 1497348377332  
+ELAPSED: 14176  
