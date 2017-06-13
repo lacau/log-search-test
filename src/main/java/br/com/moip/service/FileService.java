@@ -15,6 +15,10 @@ public class FileService {
 
     private static final Pattern LOG_PATTERN = Pattern.compile("(request_to=\".*\")+.*(response_status=\".*\")+");
 
+    private static final short REGEX_REQUEST_GROUP = 1;
+
+    private static final short REGEX_RESPONSE_GROUP = 2;
+
     private static final class Holder {
         static final FileService INSTANCE = new FileService();
     }
@@ -31,8 +35,8 @@ public class FileService {
         try {
             final Matcher matcher = LOG_PATTERN.matcher(readFile(path));
             while(matcher.find()) {
-                final String g1 = matcher.group(1);
-                final String g2 = matcher.group(2);
+                final String g1 = matcher.group(REGEX_REQUEST_GROUP);
+                final String g2 = matcher.group(REGEX_RESPONSE_GROUP);
                 fileResult.addRequestURL(g1.substring(g1.indexOf("\"") + 1, g1.length() - 1));
                 fileResult.addResponseStatus(g2.substring(g2.indexOf("\"") + 1, g2.length() - 1));
             }
