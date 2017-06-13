@@ -32,6 +32,10 @@ public class MathService {
 
         Collections.sort(sortedEntries, byValueDesc());
 
+        if(maxSize > sortedEntries.size()) {
+            return sortedEntries;
+        }
+
         return sortedEntries.subList(0, maxSize);
     }
 
