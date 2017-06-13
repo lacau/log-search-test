@@ -26,6 +26,10 @@ public class MathService {
     }
 
     public List<Map.Entry<String, Integer>> calculateMostCalledURLs(FileResult fileResult, int maxSize) {
+        if(maxSize <= 0) {
+            throw new IllegalArgumentException("maxSize must be > 0");
+        }
+
         final Map<String, Integer> urlCount = countEquals(fileResult.getRequestURL());
 
         final List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<>(urlCount.entrySet());
