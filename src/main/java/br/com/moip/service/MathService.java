@@ -26,25 +26,53 @@ public class MathService {
     }
 
     public List<Map.Entry<String, Integer>> calculateMostCalledURLs(FileResult fileResult, int maxSize) {
-        Map<String, Integer> urlCount = new HashMap<String, Integer>();
+        final Map<String, Integer> urlCount = countEquals(fileResult.getRequestURL());
 
-        for(String url : fileResult.getRequestURL()) {
-            if(urlCount.get(url) == null) {
-                urlCount.put(url, 1);
+        final List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<Map.Entry<String, Integer>>(urlCount.entrySet());
+
+        Collections.sort(sortedEntries, byValueDesc());
+
+        return sortedEntries.subList(0, maxSize);
+    }
+
+    public List<Map.Entry<String, Integer>> calculateResponseStatusCount(FileResult fileResult) {
+        final Map<String, Integer> statusCount = countEquals(fileResult.getResponseStatus());
+
+        final List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<Map.Entry<String, Integer>>(statusCount.entrySet());
+
+        Collections.sort(sortedEntries, byKeyAsc());
+
+        return sortedEntries;
+    }
+
+    private Map<String, Integer> countEquals(List<String> list) {
+        final Map<String, Integer> map = new HashMap<String, Integer>();
+
+        for(String url : list) {
+            if(map.get(url) == null) {
+                map.put(url, 1);
             } else {
-                urlCount.put(url, urlCount.get(url) + 1);
+                map.put(url, map.get(url) + 1);
             }
         }
+        return map;
+    }
 
-        List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<Map.Entry<String, Integer>>(urlCount.entrySet());
-
-        Collections.sort(sortedEntries, new Comparator<Map.Entry<String, Integer>>() {
+    private Comparator byValueDesc() {
+        return new Comparator<Map.Entry<String, Integer>>() {
             @Override
             public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
                 return e2.getValue().compareTo(e1.getValue());
             }
-        });
+        };
+    }
 
-        return sortedEntries.subList(0, maxSize);
+    private Comparator byKeyAsc() {
+        return new Comparator<Map.Entry<String, Integer>>() {
+            @Override
+            public int compare(Map.Entry<String, Integer> e1, Map.Entry<String, Integer> e2) {
+                return e1.getKey().compareTo(e2.getKey());
+            }
+        };
     }
 }
