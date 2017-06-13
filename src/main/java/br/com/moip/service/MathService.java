@@ -6,6 +6,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import br.com.moip.model.FileResult;
 
@@ -26,8 +27,10 @@ public class MathService {
     }
 
     public List<Map.Entry<String, Integer>> calculateMostCalledURLs(FileResult fileResult, int maxSize) {
+        Optional.ofNullable(fileResult).orElseThrow(() -> new IllegalArgumentException("fileResult can not be null. fileResult=" + fileResult));
+
         if(maxSize <= 0) {
-            throw new IllegalArgumentException("maxSize must be > 0");
+            throw new IllegalArgumentException("maxSize must be > 0. maxSize=" + maxSize);
         }
 
         final Map<String, Integer> urlCount = countEquals(fileResult.getRequestURL());
@@ -44,6 +47,8 @@ public class MathService {
     }
 
     public List<Map.Entry<String, Integer>> calculateResponseStatusCount(FileResult fileResult) {
+        Optional.ofNullable(fileResult).orElseThrow(() -> new IllegalArgumentException("firstResult can not be null. fileResult=" + fileResult));
+
         final Map<String, Integer> statusCount = countEquals(fileResult.getResponseStatus());
 
         final List<Map.Entry<String, Integer>> sortedEntries = new ArrayList<>(statusCount.entrySet());
