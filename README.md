@@ -16,7 +16,7 @@ At the end of execution, it will print the following results to console:
 **br.com.moip.service.PrinterService** - service responsable for print required outputs.  
 **br.com.moip.model.FileResult** - class to hold file parsed information.
 ## Performance statistics
-It was executed in a dell laptop **core i7 5500U 2.40GHz** with **16GB RAM**.  
+It was executed in a dell laptop **core i7 5500U 2.40GHz** with **16GB RAM** running **windows 7**.  
 When runned against a **450Mb** logfile, it took about **7,5 seconds** to came up with results below:  
 https://eagerhaystack.com - 72000  
 https://surrealostrich.com.br - 70464  
